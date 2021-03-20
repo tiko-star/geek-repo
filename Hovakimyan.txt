@@ -1,1 +1,98 @@
-Harut
+#include <iostream>
+using namespace std;
+struct workers
+{
+	char name[30];
+	char lastname[30];
+	int numberOfChildren;
+};
+workers inviteWorkers()
+{
+	workers w;
+	cout << "\nSay Name ";
+	cin >> w.name;
+	cout << "Say Lastname ";
+	cin >> w.lastname;
+	cout << "Say Number of children ";
+	cin >> w.numberOfChildren;
+	return w;
+}
+
+class Employee
+{
+private: workers* w;
+private: int n;
+public: workers* worker = new workers;
+	  Employee(workers* pw, int pn)
+	  {
+		  w = pw;
+		  n = pn;
+		  l = pn;
+	  }
+	  int l=n;
+public: workers* getNewList()
+{
+	l = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (w[i].numberOfChildren > 0)
+		{
+			worker[l] = w[i];
+			l++;
+		}
+	}
+	return worker;
+}
+public: void Print(workers* worker)
+{
+ 	for (int i = 0; i < l; i++)
+	{
+		cout << worker[i].name << ", " << worker[i].lastname << ", " << worker[i].numberOfChildren << "\n";
+	}
+}
+};
+
+int main()
+{
+	workers* works = new workers[20];
+	int n = 0;
+	do
+	{
+		cout << "Ashxatoxneri qanaky ";
+		cin >> n;
+	} while (n < 0);
+	for (int i = 0; i < n; i++)
+	{
+		works[i] = inviteWorkers();
+	}
+	int switch_on = 0;
+	
+	while (true)
+	{
+		cout << "1: Tpel erexa unecoxneri cucaky\n2: Tpel cucaky\n3: Exit\n ";
+		cin >> switch_on;
+		switch (switch_on)
+		{
+		case 1:
+		{
+			Employee employee(works, n);
+			workers* work = employee.getNewList();
+			employee.Print(work);
+		}
+		break;
+		case 2:
+		{
+			Employee employee(works, n);
+			employee.Print(works);
+		}
+		break;
+		case 3:
+			return 0;
+			break;
+		default:
+
+			break;
+		}
+	}
+	return 0;
+}
